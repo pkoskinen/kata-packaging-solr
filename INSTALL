@@ -1,0 +1,28 @@
+Installation for Kata administrators
+
+Installation should be carried out on a clean RHEL 6 / CentOS 6 machine
+
+I. Packages delivered
+
+1. mcfg-<version>.rpm (called the master configuration tool)
+2. solr-<version>.rpm
+
+II. Installation steps
+
+To avoid installation of packages not required in a production server, you
+can install package dummy-deps-<version>.rpm from the Kata packaging with:
+
+"sudo yum install dummy-deps-<version>.rpm"
+
+1. Install master configuration tool
+
+    1.a. "sudo yum install mcfg-<version>.rpm"
+    1.b. copy the provided master configuration sample file
+         "sudo cp -i /usr/share/mcfg/examples/kata-master.ini /root/"
+    1.c. Edit it "sudo -e /root/kata-master.ini"
+
+2. Install Solr
+
+    2.a. "sudo yum install solr-<version>.rpm"
+
+
