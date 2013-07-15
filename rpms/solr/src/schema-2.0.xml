@@ -77,7 +77,7 @@
     <field name="index_id" type="string" indexed="true" stored="true" required="true" />
     <field name="id" type="string" indexed="true" stored="true" required="true" />
     <field name="site_id" type="string" indexed="true" stored="true" required="true" />
-    <field name="title" type="text" indexed="true" stored="true" />
+    <field name="title" type="text" indexed="true" stored="true" multiValued="true" />
     <field name="entity_type" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="dataset_type" type="string" indexed="true" stored="true" />
     <field name="state" type="string" indexed="true" stored="true" omitNorms="true" />
@@ -88,7 +88,8 @@
     <field name="ckan_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="download_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="notes" type="text" indexed="true" stored="true"/>
-    <field name="author" type="textgen" indexed="true" stored="true" />
+    <field name="author" type="textgen" indexed="true" stored="true" multiValued="true" />
+    <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="author_email" type="textgen" indexed="true" stored="true" />
     <field name="maintainer" type="textgen" indexed="true" stored="true" />
     <field name="maintainer_email" type="textgen" indexed="true" stored="true" />
@@ -155,7 +156,6 @@
 <copyField source="vocab_*" dest="text"/>
 <copyField source="urls" dest="text"/>
 <copyField source="name" dest="text"/>
-<copyField source="title" dest="text"/>
 <copyField source="text" dest="text"/>
 <copyField source="license" dest="text"/>
 <copyField source="notes" dest="text"/>
@@ -163,6 +163,12 @@
 <copyField source="groups" dest="text"/>
 <copyField source="res_description" dest="text"/>
 <copyField source="maintainer" dest="text"/>
-<copyField source="author" dest="text"/>
+<copyField source="author*" dest="text"/>
+<copyField source="author_*" dest="author"/>
+<copyField source="organization*" dest="text"/>
+<copyField source="organization_*" dest="organization"/>
+<copyField source="title*" dest="text"/>
+<copyField source="extras_title_*" dest="title"/>
+
 
 </schema>
