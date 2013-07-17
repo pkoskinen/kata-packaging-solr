@@ -89,7 +89,9 @@
     <field name="download_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="notes" type="text" indexed="true" stored="true"/>
     <field name="author" type="textgen" indexed="true" stored="true" multiValued="true" />
+    <field name="authorstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for author facet -->
     <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
+    <field name="organizationstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for organization facet -->
     <field name="author_email" type="textgen" indexed="true" stored="true" />
     <field name="maintainer" type="textgen" indexed="true" stored="true" />
     <field name="maintainer_email" type="textgen" indexed="true" stored="true" />
@@ -165,10 +167,14 @@
 <copyField source="maintainer" dest="text"/>
 <copyField source="author*" dest="text"/>
 <copyField source="author_*" dest="author"/>
+<copyField source="author" dest="authorstring"/>
+<copyField source="author_*" dest="authorstring"/>
 <copyField source="organization*" dest="text"/>
 <copyField source="organization_*" dest="organization"/>
+<copyField source="organization*" dest="organizationstring"/>
+<copyField source="extras_licenseURL" dest="license"/>
+<copyField source="extras_licenseURL" dest="text"/>
 <copyField source="title*" dest="text"/>
 <copyField source="extras_title_*" dest="title"/>
-
 
 </schema>
