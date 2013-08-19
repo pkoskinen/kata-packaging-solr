@@ -82,23 +82,33 @@
     <field name="dataset_type" type="string" indexed="true" stored="true" />
     <field name="state" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="name" type="string" indexed="true" stored="true" omitNorms="true" />
+    <field name="pids" type="string" indexed="true" stored="false" multiValued="true" />
     <field name="revision_id" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="version" type="string" indexed="true" stored="true" />
     <field name="url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="ckan_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="download_url" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="notes" type="text" indexed="true" stored="true"/>
+
     <field name="author" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="authorstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for author facet -->
+    <field name="author_email" type="textgen" indexed="true" stored="true" />
+
+    <field name="actor" type="textgen" indexed="true" stored="true" multiValued="true" />
+
     <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="organizationstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for organization facet -->
-    <field name="author_email" type="textgen" indexed="true" stored="true" />
+
     <field name="maintainer" type="textgen" indexed="true" stored="true" />
     <field name="maintainer_email" type="textgen" indexed="true" stored="true" />
-    <field name="license" type="string" indexed="true" stored="true" />
+
+    <field name="license" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="licensetext" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="license_id" type="string" indexed="true" stored="true" />
+
     <field name="ratings_count" type="int" indexed="true" stored="false" />
     <field name="ratings_average" type="float" indexed="true" stored="false" />
+
     <field name="tags" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="groups" type="string" indexed="true" stored="true" multiValued="true"/>
 
@@ -158,22 +168,47 @@
 <copyField source="vocab_*" dest="text"/>
 <copyField source="urls" dest="text"/>
 <copyField source="name" dest="text"/>
+<copyField source="name" dest="pids"/>
+<copyField source="id" dest="text"/>
+<copyField source="id" dest="pids"/>
 <copyField source="text" dest="text"/>
-<copyField source="license" dest="text"/>
 <copyField source="notes" dest="text"/>
 <copyField source="tags" dest="text"/>
 <copyField source="groups" dest="text"/>
 <copyField source="res_description" dest="text"/>
+
 <copyField source="maintainer" dest="text"/>
+<copyField source="maintainer" dest="actor"/>
+
 <copyField source="author*" dest="text"/>
 <copyField source="author_*" dest="author"/>
 <copyField source="author" dest="authorstring"/>
 <copyField source="author_*" dest="authorstring"/>
+<copyField source="author*" dest="actor"/>
+
 <copyField source="organization*" dest="text"/>
 <copyField source="organization_*" dest="organization"/>
 <copyField source="organization*" dest="organizationstring"/>
+<copyField source="organization*" dest="actor"/>
+
+<copyField source="extras_funder" dest="actor"/>
+<copyField source="extras_owner" dest="actor"/>
+<copyField source="extras_evwho*" dest="actor"/>
+
 <copyField source="extras_licenseURL" dest="license"/>
+<copyField source="extras_accessrequestURL" dest="license"/>
+<copyField source="extras_accessRights" dest="license"/>
+
+<copyField source="license" dest="licensetext"/>
+<copyField source="extras_licenseURL" dest="licensetext"/>
+<copyField source="extras_accessrequestURL" dest="licensetext"/>
+<copyField source="extras_accessRights" dest="licensetext"/>
+
+<copyField source="license" dest="text"/>
 <copyField source="extras_licenseURL" dest="text"/>
+<copyField source="extras_accessrequestURL" dest="text"/>
+<copyField source="extras_accessRights" dest="text"/>
+
 <copyField source="title*" dest="text"/>
 <copyField source="extras_title_*" dest="title"/>
 
