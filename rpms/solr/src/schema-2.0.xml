@@ -83,6 +83,7 @@
     <field name="state" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="name" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="pids" type="string" indexed="true" stored="false" multiValued="true" />
+    <field name="fformatstring" type="string" indexed="true" stored="true" multiValued="false" />
     <field name="revision_id" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="version" type="string" indexed="true" stored="true" />
     <field name="url" type="string" indexed="true" stored="true" omitNorms="true" />
@@ -211,5 +212,7 @@
 
 <copyField source="title*" dest="text"/>
 <copyField source="extras_title_*" dest="title"/>
+
+<copyField source="extras_fformat" dest="fformatstring"/>
 
 </schema>
