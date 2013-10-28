@@ -23,6 +23,9 @@ can install package dummy-deps-<version>.rpm from the Kata packaging with:
 
 2. Install Solr
 
-    2.a. "sudo yum install solr-<version>.rpm"
+    2.a. Install repository for ZooKeeper and ZooKeeper server with commands:
+         "cd /etc/yum.repos.d"
+         "sudo curl -O http://archive.cloudera.com/cdh4/redhat/6/x86_64/cdh/cloudera-cdh4.repo"
+    2.b. "sudo yum install solr-<version>.rpm"
 
 

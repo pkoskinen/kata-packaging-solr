@@ -10,6 +10,8 @@ Source1: src/
 Requires: patch
 Requires: tomcat6
 Requires: java-1.6.0-openjdk
+Requires: zookeeper
+Requires: zookeeper-server
 
 %define scriptdir %{_datadir}/%{name}/setup-scripts
 %define patchdir %{_datadir}/%{name}/setup-patches
@@ -26,6 +28,8 @@ cp -rp %SOURCE1 .
 %build
 diff -u ../SOURCES/src/patches/orig/tomcat6.conf ../SOURCES/src/patches/kata/tomcat6.conf >tomcat6.conf.patch || true
 diff -u ../SOURCES/src/patches/orig/solr.xml ../SOURCES/src/patches/kata/solr.xml >solr.xml.patch || true
+diff -u ../SOURCES/src/patches/orig/myid ../SOURCES/src/patches/kata/myid >myid.patch || true
+diff -u ../SOURCES/src/patches/orig/zoo.cfg ../SOURCES/src/patches/kata/zoo.cfg >zoo.cfg.patch || true
 
 %install
 install -d $RPM_BUILD_ROOT/%{scriptdir}
@@ -43,6 +47,7 @@ mv $RPM_BUILD_DIR/solr-4.5.0/dist/solr-clustering-4.5.0.jar $RPM_BUILD_ROOT/opt/
 mv $RPM_BUILD_DIR/solr-4.5.0/contrib/clustering/lib/* $RPM_BUILD_ROOT/opt/data/solr/lib/
 
 # setup scripts
+install ../SOURCES/src/12installzk.sh $RPM_BUILD_ROOT/%{scriptdir}/
 install ../SOURCES/src/22configsolr.sh $RPM_BUILD_ROOT/%{scriptdir}/
 
 # patches
@@ -50,6 +55,8 @@ install ../SOURCES/src/22configsolr.sh $RPM_BUILD_ROOT/%{scriptdir}/
 # same applies to the Dlog4j option in kata-master.ini
 install tomcat6.conf.patch $RPM_BUILD_ROOT/%{patchdir}/
 install solr.xml.patch $RPM_BUILD_ROOT/%{patchdir}/
+install myid.patch $RPM_BUILD_ROOT/%{patchdir}/
+install zoo.cfg.patch $RPM_BUILD_ROOT/%{patchdir}/
 install ../SOURCES/src/schema-2.0.xml $RPM_BUILD_ROOT/%{katadatadir}/
 
 # A bit of a kludge ... works ok though
@@ -385,6 +392,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 # To counter the issues with a 500 error on solr.
 sed -i 's/enable="${solr.velocity.enabled:true}"/enable="${solr.velocity.enabled:false}"/' /opt/data/solr/collection1/conf/solrconfig.xml
+%{scriptdir}/12installzk.sh %{patchdir} %{katadatadir}
 %{scriptdir}/22configsolr.sh %{patchdir} %{katadatadir}
 service tomcat6 restart
 
@@ -400,4 +408,7 @@ service tomcat6 restart
 %{scriptdir}/22configsolr.sh
 %{patchdir}/solr.xml.patch
 %{patchdir}/tomcat6.conf.patch
+%{scriptdir}/12installzk.sh
+%{patchdir}/myid.patch
+%{patchdir}/zoo.cfg.patch
 %{katadatadir}/schema-2.0.xml
