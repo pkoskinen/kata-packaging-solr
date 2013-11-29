@@ -83,7 +83,7 @@
     <field name="state" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="name" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="pids" type="string" indexed="true" stored="false" multiValued="true" />
-    <field name="fformatstring" type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="fformatstring" type="string" indexed="true" stored="true" multiValued="true" />
     <field name="revision_id" type="string" indexed="true" stored="true" omitNorms="true" />
     <field name="version" type="string" indexed="true" stored="true" />
     <field name="url" type="string" indexed="true" stored="true" omitNorms="true" />
@@ -96,6 +96,8 @@
     <field name="author_email" type="textgen" indexed="true" stored="true" />
 
     <field name="actor" type="textgen" indexed="true" stored="true" multiValued="true" />
+
+    <field name="extras_discipline" type="string" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
 
     <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="organizationstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for organization facet -->
@@ -187,32 +189,33 @@
 <copyField source="author_*" dest="authorstring"/>
 <copyField source="author*" dest="actor"/>
 
+<copyField source="extras_discipline" dest="text"/>
+
 <copyField source="organization*" dest="text"/>
 <copyField source="organization_*" dest="organization"/>
 <copyField source="organization*" dest="organizationstring"/>
 <copyField source="organization*" dest="actor"/>
 
-<copyField source="extras_funder" dest="actor"/>
+<copyField source="extras_project_funder" dest="actor"/>
 <copyField source="extras_owner" dest="actor"/>
 <copyField source="extras_evwho*" dest="actor"/>
 
-<copyField source="extras_licenseURL" dest="license"/>
-<copyField source="extras_accessrequestURL" dest="license"/>
-<copyField source="extras_accessRights" dest="license"/>
+<copyField source="extras_license_URL" dest="license"/>
+<copyField source="extras_access_request_URL" dest="urls"/>
+<copyField source="direct_download_URL" dest="urls"/>
+<copyField source="extras_access_application_URL" dest="urls"/>
 
 <copyField source="license" dest="licensetext"/>
-<copyField source="extras_licenseURL" dest="licensetext"/>
-<copyField source="extras_accessrequestURL" dest="licensetext"/>
-<copyField source="extras_accessRights" dest="licensetext"/>
+<copyField source="extras_license_URL" dest="licensetext"/>
 
 <copyField source="license" dest="text"/>
-<copyField source="extras_licenseURL" dest="text"/>
-<copyField source="extras_accessrequestURL" dest="text"/>
-<copyField source="extras_accessRights" dest="text"/>
+<copyField source="extras_access_request_URL" dest="text"/>
+<copyField source="direct_download_URL" dest="text"/>
+<copyField source="extras_access_application_URL" dest="text"/>
 
 <copyField source="title*" dest="text"/>
 <copyField source="extras_title_*" dest="title"/>
 
-<copyField source="extras_fformat" dest="fformatstring"/>
+<copyField source="res_format" dest="fformatstring"/>
 
 </schema>
