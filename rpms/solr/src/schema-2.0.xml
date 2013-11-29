@@ -97,7 +97,7 @@
 
     <field name="actor" type="textgen" indexed="true" stored="true" multiValued="true" />
 
-    <field name="extras_discipline" type="string" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
+    <field name="extras_discipline" type="textgen" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
 
     <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="organizationstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for organization facet -->
