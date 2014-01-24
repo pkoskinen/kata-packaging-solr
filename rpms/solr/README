@@ -1,5 +1,5 @@
 Solr RPM requires a distribution tgz file to be downloaded from 
-http://mirrors.gigenet.com/apache/lucene/solr/4.5.0/solr-4.5.0.tgz
+http://mirrors.gigenet.com/apache/lucene/solr/4.6.0/solr-4.6.0.tgz
 
 Put it in rpmbuild/SOURCES to take advantage of it in rpmbuild. Run
 build-from-repo.sh to build.
