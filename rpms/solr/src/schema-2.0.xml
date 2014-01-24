@@ -70,6 +70,12 @@
             <filter class="solr.LowerCaseFilterFactory"/>
         </analyzer>
     </fieldType>
+
+    <fieldType name="CommaSeparatedString" class="solr.TextField">
+        <analyzer>
+            <tokenizer class="solr.PatternTokenizerFactory" group="-1" pattern=",(?=([^\s]))" />
+        </analyzer>
+    </fieldType>
 </types>
 
 
@@ -97,7 +103,7 @@
 
     <field name="actor" type="textgen" indexed="true" stored="true" multiValued="true" />
 
-    <field name="extras_discipline" type="textgen" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
+    <field name="extras_discipline" type="CommaSeparatedString" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
 
     <field name="organization" type="textgen" indexed="true" stored="true" multiValued="true" />
     <field name="organizationstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for organization facet -->
