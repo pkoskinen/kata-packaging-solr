@@ -1,15 +1,15 @@
 # See http://blog.nexcess.net/2011/12/30/installing-apache-solr-on-centos/ for required tomcat6 and java jdk.
 Summary: Solr binary package
 Name: solr
-Version: 4.6.0
+Version: 4.6.1
 Release: 4%{?dist}
 Group: Applications/File
 License: Apache License 2.0
-Source0: solr-4.6.0.tgz
+Source0: solr-4.6.1.tgz
 Source1: src/
 Requires: patch
 Requires: tomcat6
-Requires: java-1.6.0-openjdk
+Requires: java-1.7.0-openjdk
 Requires: zookeeper
 Requires: zookeeper-server
 
@@ -19,7 +19,7 @@ Requires: zookeeper-server
 %define srcdir %{_sourcedir}/src
 
 %description
-SOLR binary package, for version 4.6.0. Installs to a tomcat6 installation as war file and example data files.
+SOLR binary package, for version 4.6.1. Installs to a tomcat6 installation as war file and example data files.
 
 %prep
 cp -rp %SOURCE1 .
@@ -38,13 +38,13 @@ install -d $RPM_BUILD_ROOT/%{katadatadir}
 install -d $RPM_BUILD_ROOT/opt/data/solr
 install -d $RPM_BUILD_ROOT/usr/share/tomcat6/conf/Catalina/localhost
 install -d $RPM_BUILD_ROOT/usr/share/tomcat6/lib
-mv $RPM_BUILD_DIR/solr-4.6.0/example/solr $RPM_BUILD_ROOT/opt/data
-mv $RPM_BUILD_DIR/solr-4.6.0/dist/solr-4.6.0.war $RPM_BUILD_ROOT/opt/data/solr/solr.war
-mv $RPM_BUILD_DIR/solr-4.6.0/example/lib/ext/* $RPM_BUILD_ROOT/usr/share/tomcat6/lib/
-mv $RPM_BUILD_DIR/solr-4.6.0/example/resources/log4j.properties $RPM_BUILD_ROOT/opt/data/solr/
+mv $RPM_BUILD_DIR/solr-4.6.1/example/solr $RPM_BUILD_ROOT/opt/data
+mv $RPM_BUILD_DIR/solr-4.6.1/dist/solr-4.6.1.war $RPM_BUILD_ROOT/opt/data/solr/solr.war
+mv $RPM_BUILD_DIR/solr-4.6.1/example/lib/ext/* $RPM_BUILD_ROOT/usr/share/tomcat6/lib/
+mv $RPM_BUILD_DIR/solr-4.6.1/example/resources/log4j.properties $RPM_BUILD_ROOT/opt/data/solr/
 install -d $RPM_BUILD_ROOT/opt/data/solr/lib
-mv $RPM_BUILD_DIR/solr-4.6.0/dist/solr-clustering-4.6.0.jar $RPM_BUILD_ROOT/opt/data/solr/lib/
-mv $RPM_BUILD_DIR/solr-4.6.0/contrib/clustering/lib/* $RPM_BUILD_ROOT/opt/data/solr/lib/
+mv $RPM_BUILD_DIR/solr-4.6.1/dist/solr-clustering-4.6.1.jar $RPM_BUILD_ROOT/opt/data/solr/lib/
+mv $RPM_BUILD_DIR/solr-4.6.1/contrib/clustering/lib/* $RPM_BUILD_ROOT/opt/data/solr/lib/
 
 # setup scripts
 install ../SOURCES/src/12installzk.sh $RPM_BUILD_ROOT/%{scriptdir}/
