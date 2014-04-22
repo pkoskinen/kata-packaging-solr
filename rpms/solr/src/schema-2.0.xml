@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
- Licensed to the Apache Software Foundation (ASF) under one or more
- contributor license agreements.  See the NOTICE file distributed with
- this work for additional information regarding copyright ownership.
- The ASF licenses this file to You under the Apache License, Version 2.0
- (the "License"); you may not use this file except in compliance with
- the License.  You may obtain a copy of the License at
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at
 
-     http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 -->
 
 <schema name="ckan" version="2.0">
@@ -102,7 +102,9 @@
     <field name="authorstring" type="string" indexed="true" stored="true" multiValued="true" /> <!-- used for author facet -->
     <field name="author_email" type="textgen" indexed="true" stored="true" />
 
-    <field name="actor" type="textgen" indexed="true" stored="true" multiValued="true" />
+    <field name="funder" type="textgen" indexed="true" stored="true" multiValued="true" />
+    
+    <field name="agent" type="textgen" indexed="true" stored="true" multiValued="true" />
 
     <field name="extras_discipline" type="CommaSeparatedString" indexed="true" stored="true" multiValued="true"/> <!-- used for discipline facet -->
 
@@ -130,7 +132,7 @@
     <field name="res_mimetype" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
-         via copyField further on in this schema  -->
+via copyField further on in this schema -->
     <field name="text" type="text" indexed="true" stored="false" multiValued="true"/>
     <field name="urls" type="text" indexed="true" stored="false" multiValued="true"/>
 
@@ -153,7 +155,7 @@
     <field name="indexed_ts" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
 
     <!-- Copy the title field into titleString, and treat as a string
-         (rather than text type).  This allows us to sort on the titleString -->
+(rather than text type). This allows us to sort on the titleString -->
     <field name="title_string" type="string" indexed="true" stored="false" />
 
     <field name="data_dict" type="string" indexed="false" stored="true" />
@@ -164,7 +166,7 @@
 
     <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
     <dynamicField name="vocab_*" type="string" indexed="true" stored="true" multiValued="true"/>
-    <dynamicField name="*" type="string" indexed="true"  stored="false"/>
+    <dynamicField name="*" type="string" indexed="true" stored="false"/>
 </fields>
 
 <uniqueKey>index_id</uniqueKey>
@@ -188,25 +190,23 @@
 <copyField source="groups" dest="text"/>
 <copyField source="res_description" dest="text"/>
 
-<copyField source="maintainer" dest="text"/>
-<copyField source="maintainer" dest="actor"/>
-
 <copyField source="author*" dest="text"/>
 <copyField source="author_*" dest="author"/>
 <copyField source="author" dest="authorstring"/>
 <copyField source="author_*" dest="authorstring"/>
-<copyField source="author*" dest="actor"/>
+
+<copyField source="funder_*" dest="text"/>
+<copyField source="funder_*" dest="funder"/>
+
+<copyField source="agent_name_*" dest="agent"/>
 
 <copyField source="extras_discipline" dest="text"/>
 
 <copyField source="organization*" dest="text"/>
 <copyField source="organization_*" dest="organization"/>
 <copyField source="organization*" dest="organizationstring"/>
-<copyField source="organization*" dest="actor"/>
 
-<copyField source="extras_project_funder" dest="actor"/>
-<copyField source="extras_owner" dest="actor"/>
-<copyField source="extras_evwho*" dest="actor"/>
+<copyField source="extras_evwho*" dest="agent"/>
 
 <copyField source="extras_license_URL" dest="license"/>
 <copyField source="extras_access_request_URL" dest="urls"/>
@@ -228,3 +228,4 @@
 <copyField source="res_mimetype" dest="mimetypestring"/>
 
 </schema>
+
