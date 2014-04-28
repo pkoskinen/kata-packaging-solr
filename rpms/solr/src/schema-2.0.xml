@@ -199,6 +199,7 @@ via copyField further on in this schema -->
 <copyField source="funder_*" dest="funder"/>
 
 <copyField source="agent_name_*" dest="agent"/>
+<copyField source="agent_name_*" dest="text"/>
 
 <copyField source="extras_discipline" dest="text"/>
 
