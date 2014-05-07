@@ -399,11 +399,11 @@ service tomcat6 restart
 
 %files
 %attr(-,tomcat,tomcat)/opt/data/solr
-%attr(-,root,root)/usr/share/tomcat6/lib/jcl-over-slf4j-1.6.6.jar
-%attr(-,root,root)/usr/share/tomcat6/lib/jul-to-slf4j-1.6.6.jar
+%attr(-,root,root)/usr/share/tomcat6/lib/jcl-over-slf4j-1.7.6.jar
+%attr(-,root,root)/usr/share/tomcat6/lib/jul-to-slf4j-1.7.6.jar
 %attr(-,root,root)/usr/share/tomcat6/lib/log4j-1.2.16.jar
-%attr(-,root,root)/usr/share/tomcat6/lib/slf4j-api-1.6.6.jar
-%attr(-,root,root)/usr/share/tomcat6/lib/slf4j-log4j12-1.6.6.jar
+%attr(-,root,root)/usr/share/tomcat6/lib/slf4j-api-1.7.6.jar
+%attr(-,root,root)/usr/share/tomcat6/lib/slf4j-log4j12-1.7.6.jar
 %attr(-,tomcat,tomcat)/usr/share/tomcat6/conf/Catalina/localhost/solr.xml
 %{scriptdir}/22configsolr.sh
 %{patchdir}/solr.xml.patch
