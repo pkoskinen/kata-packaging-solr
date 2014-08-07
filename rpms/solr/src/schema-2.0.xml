@@ -130,6 +130,7 @@ limitations under the License.
     <field name="res_format" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="res_url" type="string" indexed="true" stored="true" multiValued="true"/>
     <field name="res_mimetype" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="res_text_contents" type="string" indexed="true" stored="true" multiValued="true"/>
 
     <!-- catchall field, containing all other searchable text fields (implemented
 via copyField further on in this schema -->
@@ -227,6 +228,7 @@ via copyField further on in this schema -->
 
 <copyField source="res_format" dest="fformatstring"/>
 <copyField source="res_mimetype" dest="mimetypestring"/>
+<copyField source="res_text_contents" dest="textgen"/>
 
 </schema>
 
