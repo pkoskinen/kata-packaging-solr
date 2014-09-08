@@ -228,7 +228,7 @@ via copyField further on in this schema -->
 
 <copyField source="res_format" dest="fformatstring"/>
 <copyField source="res_mimetype" dest="mimetypestring"/>
-<copyField source="res_text_contents" dest="textgen"/>
+<copyField source="res_text_contents" dest="text"/>
 
 </schema>
 
